@@ -1,27 +1,25 @@
-<?xml version='1.0' encoding='utf-8'?>
-<widget id="com.notarazi.bpg" version="1.0.0" xmlns="http://www.w3.org/ns/widgets" xmlns:cdv="http://cordova.apache.org/ns/1.0">
-    <name>BPG </name>
-    <description>Build Phone Gap Example</description>
-    <author email="notarazi@gmail.com" href="http://fb.me/notarazi.blogs">
-        Notarazi
-    </author>
-    <content src="index.html" />
-    <access origin="*" />
-    <allow-intent href="http://*/*" />
-    <allow-intent href="https://*/*" />
-    <allow-intent href="tel:*" />
-    <allow-intent href="sms:*" />
-    <allow-intent href="mailto:*" />
-    <allow-intent href="geo:*" />
-    <platform name="android">
-        <allow-intent href="market:*" />
-    </platform>
-    <platform name="ios">
-        <allow-intent href="itms:*" />
-        <allow-intent href="itms-apps:*" />
-    </platform>
-    <preference name="phonegap-version" value="cli-6.5.0" />
-    <engine name="android" spec="^6.2.3" />
-    <engine name="ios" spec="^4.4.0" />
-    <plugin name="cordova-plugin-battery-status" spec="1.2.5" />
-</widget>
+<!DOCTYPE html>
+<html>
+<head>
+    <title>BPG Example</title>
+    <script type="text/javascript" charset="utf-8" src="cordova.js"></script>
+    <script type="text/javascript" charset="utf-8">
+        document.addEventListener("deviceready",onDeviceReady,false);
+             function onDeviceReady(){
+               window.addEventListener("batterystatus", onBatteryStatus, true);
+                 function onBatteryStatus(status)
+                   {
+                     console.log(status);
+                     document.getElementById('appmessage').innerHTML=
+                       JSON.stringify(status);
+                     alert("Level: " + status.level + " isPlugged: " + status.isPlugged);
+                   }
+                 }
+    </script>
+</head>
+<body>
+    <div id='appmessage' style=' width:200px;word-wrap: break-word;'>
+        ...
+    </div>
+</body>
+</html>
